@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ReviewService.DAL;
+using ReviewService.Listeners;
 
 namespace ReviewService
 {
@@ -26,6 +29,12 @@ namespace ReviewService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+            //string mySqlConnectionString = Configuration["Connectionstrings:Database"];
+            //services.AddDbContextPool<ReviewDbContext>(options =>
+            //    options.UseMySql(mySqlConnectionString, ServerVersion.AutoDetect(mySqlConnectionString)));
+
+            //services.AddSingleton<CompanyCreatedListener>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +55,8 @@ namespace ReviewService
             {
                 endpoints.MapControllers();
             });
+
+            //app.ApplicationServices.GetService<CompanyCreatedListener>();
         }
     }
 }
