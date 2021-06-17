@@ -46,7 +46,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          repository: youris30/kvj_companyservice
+          repository: youris30/kvj_reviewservice
           context: .
           push: true
-          tags: youris30/kvj_companyservice:latest
+          tags: youris30/kvj_reviewservice:latest
